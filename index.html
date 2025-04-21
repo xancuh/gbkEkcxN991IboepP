@@ -3,25 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>privatist</title>
+  <title> </title>
   <style>
+    body {
+      @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(to bottom right, #4b0082, #000);
+      background: linear-gradient(270deg, #4b0082, #000);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     .container {
       text-align: center;
       color: white;
     }
+
     .title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
     }
+
+    .typing {
+      min-height: 3rem;
+      display: inline-block;
+      width: 100%;
+    }
+
     .pay-button {
       background-color: white;
       color: black;
@@ -35,13 +53,12 @@
       align-items: center;
       gap: 0.5rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     .pay-button:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-    }
-    .typing {
-      min-height: 3rem;
     }
   </style>
 </head>
@@ -60,6 +77,7 @@
     const textVariants = [
       "free accounts for revivals with applications",
       "free accounts for revivals with invite keys",
+      "simple payment methods",
       "very cheap prices"
     ];
 
@@ -74,7 +92,7 @@
         setTimeout(type, 100);
       } else {
         setTimeout(() => {
-          typingElement.textContent = "";
+          typingElement.textContent = "\u00A0"; // Non-breaking space to prevent shrinking
           charIndex = 0;
           textIndex = (textIndex + 1) % textVariants.length;
           setTimeout(type, 500);
