@@ -1,6 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>privatist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>privatist</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #4b0082, #000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      text-align: center;
+      color: white;
+    }
+    .title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .pay-button {
+      background-color: white;
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 1rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pay-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+    .typing {
+      min-height: 3rem;
+    }
+  </style>
 </head>
 <body>
-    <center>coming soon</center>
+  <div class="container">
+    <div class="title">
+      <span class="typing" id="typing" href="https://roblox.com"></span>
+    </div>
+    <button class="pay-button">
+      <span>R$</span>
+      pay by robux
+    </button>
+  </div>
+
+  <script>
+    const textVariants = [
+      "free accounts for revivals with applications",
+      "free accounts for revivals with invite keys",
+      "very cheap prices"
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    const typingElement = document.getElementById("typing");
+
+    function type() {
+      if (charIndex < textVariants[textIndex].length) {
+        typingElement.textContent += textVariants[textIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(() => {
+          typingElement.textContent = "";
+          charIndex = 0;
+          textIndex = (textIndex + 1) % textVariants.length;
+          setTimeout(type, 500);
+        }, 2000);
+      }
+    }
+
+    type();
+  </script>
 </body>
+</html>
+
